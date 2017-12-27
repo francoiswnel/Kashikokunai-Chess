@@ -15,7 +15,7 @@ public:
 
     ~State();
 
-    std::vector<std::vector<int>> getBoard();
+    std::vector<std::vector<int>> *getBoard();
 
 private:
     std::vector<std::vector<int>> *board;
