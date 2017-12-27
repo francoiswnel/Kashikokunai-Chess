@@ -29,44 +29,44 @@ void Game::printGame() {
         for (int j = 0; j < 9; j++) {
             if (j > 0) {
                 switch (currentState->getBoard()->at(i).at(j - 1)) {
-                    case 0:
+                    case EMPTY_SQUARE:
                         std::cout << "   ";
                         break;
-                    case 1:
-                        std::cout << whitePawnLabel << " ";
+                    case WHITE_PAWN_INDEX:
+                        std::cout << WHITE_PAWN_LABEL << " ";
                         break;
-                    case 2:
-                        std::cout << whiteKnightLabel << " ";
+                    case WHITE_KNIGHT_INDEX:
+                        std::cout << WHITE_KNIGHT_LABEL << " ";
                         break;
-                    case 3:
-                        std::cout << whiteBishopLabel << " ";
+                    case WHITE_BISHOP_INDEX:
+                        std::cout << WHITE_BISHOP_LABEL << " ";
                         break;
-                    case 4:
-                        std::cout << whiteRookLabel << " ";
+                    case WHITE_ROOK_INDEX:
+                        std::cout << WHITE_ROOK_LABEL << " ";
                         break;
-                    case 5:
-                        std::cout << whiteQueenLabel << " ";
+                    case WHITE_QUEEN_INDEX:
+                        std::cout << WHITE_QUEEN_LABEL << " ";
                         break;
-                    case 6:
-                        std::cout << whiteKingLabel << " ";
+                    case WHITE_KING_INDEX:
+                        std::cout << WHITE_KING_LABEL << " ";
                         break;
-                    case 7:
-                        std::cout << blackPawnLabel << " ";
+                    case BLACK_PAWN_INDEX:
+                        std::cout << BLACK_PAWN_LABEL << " ";
                         break;
-                    case 8:
-                        std::cout << blackKnightLabel << " ";
+                    case BLACK_KNIGHT_INDEX:
+                        std::cout << BLACK_KNIGHT_LABEL << " ";
                         break;
-                    case 9:
-                        std::cout << blackBishopLabel << " ";
+                    case BLACK_BISHOP_INDEX:
+                        std::cout << BLACK_BISHOP_LABEL << " ";
                         break;
-                    case 10:
-                        std::cout << blackRookLabel << " ";
+                    case BLACK_ROOK_INDEX:
+                        std::cout << BLACK_ROOK_LABEL << " ";
                         break;
-                    case 11:
-                        std::cout << blackQueenLabel << " ";
+                    case BLACK_QUEEN_INDEX:
+                        std::cout << BLACK_QUEEN_LABEL << " ";
                         break;
-                    case 12:
-                        std::cout << blackKingLabel << " ";
+                    case BLACK_KING_INDEX:
+                        std::cout << BLACK_KING_LABEL << " ";
                         break;
                     default:
                         break;
@@ -106,4 +106,7 @@ void Game::printGame() {
     }
 
     std::cout << "  a  b  c  d  e  f  g  h   " << std::endl;
+
+    currentState->evaluate();
+    std::cout << std::endl << "Evaluation: " << currentState->getEvaluation() << std::endl;
 }

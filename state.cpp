@@ -6,7 +6,9 @@
 
 State::State() {
     board = new std::vector<std::vector<int>>(8, std::vector<int>(8));
-    evaluation = new int(0);
+    evaluation = 0;
+
+    // initialise major piece positions:
 
     board->at(0).at(0) = 10;
     board->at(0).at(1) = 8;
@@ -25,23 +27,79 @@ State::State() {
     board->at(7).at(6) = 2;
     board->at(7).at(7) = 4;
 
+    // initialise pawn positions:
+
     for (int i = 0; i < 8; i++) {
         board->at(1).at(i) = 7;
         board->at(6).at(i) = 1;
     }
 }
 
-State::State(std::vector<std::vector<int>> *board, int *evaluation) : board(board), evaluation(evaluation) {
+State::State(std::vector<std::vector<int>> *board, int evaluation) : board(board), evaluation(evaluation) {
     // intentionally blank
 }
 
 State::~State() {
     delete board;
-    delete evaluation;
 }
 
 std::vector<std::vector<int>> *State::getBoard() {
     return board;
 }
 
+int State::getEvaluation() {
+    return evaluation;
+}
+
+
+void State::evaluate() {
+    evaluation = 0;
+
+    // calculate material worth:
+
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            switch (board->at(i).at(j)) {
+                case WHITE_PAWN_INDEX:
+                    evaluation += PAWN_VALUE;
+                    break;
+                case WHITE_KNIGHT_INDEX:
+                    evaluation += KNIGHT_VALUE;
+                    break;
+                case WHITE_BISHOP_INDEX:
+                    evaluation += BISHOP_VALUE;
+                    break;
+                case WHITE_ROOK_INDEX:
+                    evaluation += ROOK_VALUE;
+                    break;
+                case WHITE_QUEEN_INDEX:
+                    evaluation += QUEEN_VALUE;
+                    break;
+                case WHITE_KING_INDEX:
+                    evaluation += KING_VALUE;
+                    break;
+                case BLACK_PAWN_INDEX:
+                    evaluation -= PAWN_VALUE;
+                    break;
+                case BLACK_KNIGHT_INDEX:
+                    evaluation -= KNIGHT_VALUE;
+                    break;
+                case BLACK_BISHOP_INDEX:
+                    evaluation -= BISHOP_VALUE;
+                    break;
+                case BLACK_ROOK_INDEX:
+                    evaluation -= ROOK_VALUE;
+                    break;
+                case BLACK_QUEEN_INDEX:
+                    evaluation -= QUEEN_VALUE;
+                    break;
+                case BLACK_KING_INDEX:
+                    evaluation -= KING_VALUE;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+}
 
