@@ -3,4 +3,4 @@ project(Kashikokunai)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(kashikokunai main.cpp)
+add_executable(kashikokunai main.cpp game.cpp game.h state.cpp state.h)

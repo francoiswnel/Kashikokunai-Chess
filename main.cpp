@@ -9,9 +9,12 @@
  *  TODO
  */
 
-#include <iostream>
+#include "game.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    auto game = new Game;
+
+    game->printGame();
+
     return 0;
 }
