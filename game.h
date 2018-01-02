@@ -25,8 +25,15 @@
 class Game {
 public:
     Game();
+    // Defaults:
+    // Standard chess board positions,
+    // Human plays white.
 
-    Game(State *currentState, State *prevState, bool *currentTurn);
+    Game(bool player);
+    // Set human player to white / false
+    // or black / true.
+
+    Game(State *currentState, State *prevState, bool currentTurn, bool player);
 
     ~Game();
 
@@ -35,7 +42,8 @@ public:
 private:
     State *currentState;
     State *prevState;
-    bool *currentTurn;
+    bool currentTurn;
+    bool player;
     const std::string WHITE_PAWN_LABEL = "WP";
     const std::string WHITE_KNIGHT_LABEL = "WN";
     const std::string WHITE_BISHOP_LABEL = "WB";
