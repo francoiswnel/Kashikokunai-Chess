@@ -8,18 +8,26 @@
 Game::Game() {
     currentState = new State;
     prevState = new State;
-    currentTurn = new bool(false);
+    currentTurn = false;
+    player = false;
 }
 
-Game::Game(State *currentState, State *prevState, bool *currentTurn) : currentState(currentState), prevState(prevState),
-                                                                       currentTurn(currentTurn) {
+Game::Game(bool player) : player(player) {
+    currentState = new State;
+    prevState = new State;
+    currentTurn = false;
+}
+
+Game::Game(State *currentState, State *prevState, bool currentTurn, bool player) : currentState(currentState),
+                                                                                   prevState(prevState),
+                                                                                   currentTurn(currentTurn),
+                                                                                   player(player) {
     // intentionally left blank
 }
 
 Game::~Game() {
     delete currentState;
     delete prevState;
-    delete currentTurn;
 }
 
 void Game::printGame() {
